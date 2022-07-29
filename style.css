@@ -1,0 +1,64 @@
+
+body{
+	font-family: 'Arial', Arial;
+	font-size:14px;
+}
+.title {
+   text-align: center;
+   color: rgb(252, 0, 0);
+   font-size: 36px;
+   
+   }
+.rules{
+   text-align: center;
+   color: rgb(22, 128, 242);
+}
+
+#squares {
+      position : relative;
+      margin-left : auto;
+      margin-right : auto;
+      border: 1px solid rgb(1, 1, 1);
+   }
+   
+
+.square {
+   width : 30px;
+   height : 30px;
+   border : 1px solid #000000;
+   position : absolute;
+   
+}
+
+div.button {
+   top : 10px;
+   text-align : center;
+   margin-left : auto;
+   margin-right : auto;
+   position : relative;
+   height : 100px;
+   
+}
+.startbutton { 
+   padding: 10px;
+   width: 160px;
+   height: 60px;
+   font-family : Arial, Helvetica, sans-serif;
+   font-size : 24pt;
+   color: rgb(16, 20, 242);
+   background-color: rgb(240, 246, 83);
+   border-radius: 5px;
+   
+
+}
+.startbutton:hover{
+   background-color: rgb(78, 235, 25);
+   color: black;
+   font-size: 28pt;
+}
+
+#windiv, #losediv {
+   display: none;
+  
+}
+

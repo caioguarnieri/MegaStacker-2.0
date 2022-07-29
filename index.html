@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="script.js"> </script>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+      window.onload = function(e) {
+         let squares = document.getElementById("squares");
+         Stackers.init(squares);
+         return true;
+      };
+    </script>
+    <title>Game</title>
+  </head>
+  <body>
+      <h1 class="title"> MEGA STACKER 2.0</h1>
+      <h1 class="rules"> Press SPACE to stop the slider</h1>
+      
+    <div id="container">
+    	<div class="row">
+       		 <div class="col-md-6">
+      				<div id="squares"></div> 
+      				<div class="button" id="buttonbar">
+       				 <input type="button" class="startbutton" id="startbutton" value="START"/><br/>
+        				<span id="status"/>
+      				</div>
+      <div id="windiv">"YOU WIN !!"</div>
+      <div id="losediv">"YOU LOSE  :( "</div>
+      </div>
+       
+    </div>   
+  </body>
+</html>
