@@ -1,9 +1,9 @@
 let Stackers = 
    (function() {
       let row1 = 15; 			 // ALTERA O NUMERO DE LINAS DO JOGO.
-      let columns = 10; 		    // ALTERA O NUMERO DE COLUNAS DO JOGO. 
-      let squareSize = 30;		 // ALTERA A DISTANCIA ENTRE UM QUADRINHO E OUTRO.
-      let loadingState = 0; 
+      let columns = 10; 		    // ALTERA O NUMERO DE COLUNAS DO JOGO.
+      let squareSize = 32;		 // ALTERA A DISTANCIA ENTRE UM QUADRINHO E OUTRO.
+      let loadingState = 0;
       let loseState = 1;
       let playingState = 2;
       let twoDots = 6;
@@ -13,7 +13,7 @@ let Stackers =
       let runnerColor = "red";  //MUDA A COR DA BARRA INICIAL
       let pauseTimeOut = 500;
       let flashTimeOut = 0;
-      let STATE = loadingState;// int
+      let STATE = loadingState;  // int
       let movingDelay;
       let dots;
       let lastTimeout = -1;
@@ -51,7 +51,7 @@ let Stackers =
             if (i >= bar.column && i < bar.column+bar.width) {
                setSquareColor(bar.row, i, runnerColor);
             } else {
-               setSquareColor(bar.row, i, "#33ffe7");
+               setSquareColor(bar.row, i, "white"); // ALTERA COR DOS QUADRADINHOS FORA DO SLIDER
             }
          }
       };
@@ -105,12 +105,12 @@ let Stackers =
          return function() {
             if (iterations == 0) {
                for (let i = 0; i < DieDots.length; i++) {
-                  setSquareColor(DieDots[i].row, DieDots[i].column, "#33ffe7"); //MUDA A COR DOS QUADRADOS MORTOS PARA BRANCO
+                  setSquareColor(DieDots[i].row, DieDots[i].column, "white"); //MUDA A COR DOS QUADRADOS MORTOS PARA BRANCO
                }
                lastTimeout = setTimeout(called, flashTimeOut);
                return;
             } else {
-               let color = (iterations%2==0) ? runnerColor : "#33ffe7";
+               let color = (iterations%2==0) ? runnerColor : "white";
                for (let i = 0; i < DieDots.length; i++) {
                   setSquareColor(DieDots[i].row, DieDots[i].column, color);
                }
@@ -146,13 +146,13 @@ let Stackers =
             lastTimeout = setTimeout(moveBar, movingDelay);
          };
 
-        if (DieDots.length > 0) {
+       if (DieDots.length > 0) {
             lastTimeout = setTimeout(flashDieDots(5,DieDots,called));
          } else {
             // no flashing
           lastTimeout = setTimeout(called, pauseTimeOut);            
          }
-      };
+      }; 
 
       let dropBar = function() {
          if (STATE != playingState)
