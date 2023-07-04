@@ -223,7 +223,6 @@ let Stackers = (function () {
   };
 
   /////////////////// CRONOMETRO //////////////
-
   // início do jogo
   let tempo = 0;
 
