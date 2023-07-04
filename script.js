@@ -1,5 +1,5 @@
 let Stackers = (function () {
-  let row1 = 15; // ALTERA O NUMERO DE LINAS DO JOGO.
+  let row1 = 14; // ALTERA O NUMERO DE LINAS DO JOGO.
   let columns = 10; // ALTERA O NUMERO DE COLUNAS DO JOGO.
   let squareSize = 32; // ALTERA A DISTANCIA ENTRE UM QUADRINHO E OUTRO.
   let loadingState = 0;
@@ -8,7 +8,7 @@ let Stackers = (function () {
   let twoDots = 6;
   let oneDot = 3;
   let slowMove = 150;
-  let moveDecrement = 7;
+  let moveDecrement = 10;
   let runnerColor = "red"; //MUDA A COR DA BARRA INICIAL
   let pauseTimeOut = 500;
   let flashTimeOut = 0;
@@ -36,7 +36,14 @@ let Stackers = (function () {
     if (status.firstChild) status.removeChild(status.firstChild);
     status.appendChild(document.createTextNode(str));
   };
-  let setStartButton = function (active) {};
+  let setStartButton = function (active) {
+    // TEMPO
+    tempo = +new Date();
+    parado = 0;
+    atualiza_tempo();
+    tempo_controle = window.setInterval(atualiza_tempo, 600);
+    //
+  };
 
   let setSquareColor = function (r, c, color) {
     dots[r][c].style.backgroundColor = color;
@@ -76,16 +83,24 @@ let Stackers = (function () {
 
   let lose = function () {
     STATE = loseState;
-    alert("YOU LOSE :( ");
+    alert("YOU LOSE :(     Your Time:   " + formatTime());
     window.location.reload();
     setStartButton(true);
   };
+  
   let win = function () {
     STATE = loseState;
-    alert("YOU WIN !");
+    alert("YOU WIN !      Your Time:    " + formatTime());
     window.location.reload();
     setStartButton(true);
   };
+  
+  function formatTime() {
+    return hours.toString().padStart(2, '0') + ":" +
+           minutes.toString().padStart(2, '0') + ":" +
+           seconds.toString().padStart(2, '0');
+  }
+  
 
   let pauseAndMoveUp = function () {
     let called = function () {
@@ -206,6 +221,33 @@ let Stackers = (function () {
     }
     return false;
   };
+
+  /////////////////// CRONOMETRO //////////////
+
+  // início do jogo
+  let tempo = 0;
+
+  // referência ao timer
+  let tempo_controle = 0;
+
+  // está parado (=1) ou não (=0)
+  let parado = 1;
+
+  function atualiza_tempo() {
+    if (parado) return;
+    let tempo_atual = (+new Date() - tempo) / 1000;
+    hours = Math.floor(tempo_atual / 3600);
+    minutes = Math.floor((tempo_atual % 3600) / 60);
+    seconds = Math.floor(tempo_atual % 60);
+    let display = hours.toString().padStart(2, '0') + ":" +
+                  minutes.toString().padStart(2, '0') + ":" +
+                  seconds.toString().padStart(2, '0');
+    document.getElementById("display_tempo").innerHTML = display;
+  }
+  
+
+
+  ///////////////////////////////////////////////////
 
   let setup = function () {
     LEVEL = 0;
