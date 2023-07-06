@@ -1,5 +1,5 @@
 let Stackers = (function () {
-  let row1 = 14; // ALTERA O NUMERO DE LINAS DO JOGO.
+  let row1 = 13; // ALTERA O NUMERO DE LINAS DO JOGO.
   let columns = 10; // ALTERA O NUMERO DE COLUNAS DO JOGO.
   let squareSize = 32; // ALTERA A DISTANCIA ENTRE UM QUADRINHO E OUTRO.
   let loadingState = 0;
